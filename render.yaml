@@ -19,7 +19,7 @@ services:
       - key: APP_ENV
         value: production
       - key: DRY_RUN
-        value: "true"           
+        value: "false"           
       - key: CONFIDENCE_THRESHOLD
         value: "0.70"
       - key: DATABASE_URL
