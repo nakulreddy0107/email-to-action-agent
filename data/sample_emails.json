@@ -1,0 +1,32 @@
+[
+  {
+    "sender": "Rahul Siddharth <siddharthdacha@gmail.com>",
+    "recipients": ["nakulreddy0001@gmail.com"],
+    "subject": "Deployment review + onboarding doc update + DevOps heads-up",
+    "body": "Hi Nakul,\n\nThree things before Friday:\n\n1. Can you schedule a 30-minute deployment review with me and you for Thursday at 2pm UTC?.\n\n2. Please create a high-priority task for Jordan to update the new-hire onboarding documentation — the sections on VPN access and the staging environment are out of date. Due by end of next week.\n\n3. Also, give #devops a heads-up that we'll be freezing deploys from 3pm Thursday until the review wraps.\n\nAcknowledge when you've got this? Thanks.\n\n-- \nRahul Siddharth\nEngineering Manager"
+  },
+  {
+    "sender": "Adarsh Reddy <adarshreddy404@gmail.com>",
+    "recipients": ["nakulreddy0001@gmail.com"],
+    "subject": "Catch-up on reporting dashboard",
+    "body": "Can we schedule a quick 20-minute meeting tomorrow at 11 AM to review the reporting dashboard changes?\n\nLegal Team"
+  },
+  {
+    "sender": "Amrutha Varsha <varshaamrutha2@gmail.com>",
+    "recipients": ["nakulreddy0001@gmail.com"],
+    "subject": "Update runbook for incident response",
+    "body": "Nakul,\n\nTPlease create a Jira task to update the incident response runbook with the new escalation matrix. Mark it as high priority and set the due date to April 30.\n\nBest,\nAmrutha"
+  },
+  {
+    "sender": " Vamshi <vamshi@gmail.com>",
+    "recipients": ["nakulreddy0001@gmail.com"],
+    "subject": "New hire onboarding plan for Riya Sharma",
+    "body": "Riya Sharma is joining the engineering team on Monday. Please schedule a 30-minute onboarding meeting for Monday at 10 AM with Riya and her manager. Create a Jira task to update the onboarding documentation with the latest VPN setup steps and staging environment access instructions. Also notify the DevOps team in Slack that a new engineer will need access to internal tools by Monday morning."
+  },
+  {
+    "sender": " Ricky <ricky@gmail.com>",
+    "recipients": ["nakulreddy0001@gmail.com"],
+    "subject": "Alert engineering team",
+    "body": "Notify the engineering team in Slack immediately that the staging environment is unstable and deployments are temporarily paused.\n\nBest,\nRicky"
+  }
+]

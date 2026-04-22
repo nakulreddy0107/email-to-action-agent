@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mailroom — Email-to-Action Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<!-- soft grid background -->
+<div class="bg-grid" aria-hidden="true"></div>
+<header class="top">
+  <div class="brand">
+    <span class="brand-name" style="color: red;">Mailroom</span>
+    <span class="brand-sub">email → action</span>
+  </div>
+  <nav class="top-nav">
+    <button class="nav-tab active" data-tab="compose">Process</button>
+    <button class="nav-tab" data-tab="pending">
+      Pending <span class="pill" id="pending-count">0</span>
+    </button>
+    <button class="nav-tab" data-tab="history">History</button>
+  </nav>
+  <div class="top-meta">
+    <span class="status-dot"></span>
+    <span id="env-model">—</span>
+  </div>
+</header>
+
+<main class="app">
+
+  <!-- ============================================================== -->
+  <!-- TAB 1: Compose / Process                                         -->
+  <!-- ============================================================== -->
+  <section class="tab-panel active" data-panel="compose">
+
+    <div class="layout-two-col">
+
+      <!-- LEFT: Email editor -->
+      <div class="pane pane-left">
+        <div class="pane-header">
+          <h2 class="serif">Paste an email.</h2>
+          <p class="lede">Our agents will read it, break it into atomic requests, and execute the right actions across Jira, Slack, and Calendar — with every decision logged.</p>
+        </div>
+
+        <div class="samples">
+          <span class="samples-label">Try a sample:</span>
+          <div class="samples-list" id="samples-list">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <form class="email-form" id="email-form">
+          <div class="field-row">
+            <label>From</label>
+            <input type="text" id="email-sender" placeholder="Priya Raman &lt;priya@example.com&gt;" required>
+          </div>
+          <div class="field-row">
+            <label>Subject</label>
+            <input type="text" id="email-subject" placeholder="Quick asks before Friday" required>
+          </div>
+          <div class="field-row field-body">
+            <label>Body</label>
+            <textarea id="email-body" rows="12" placeholder="Paste the email here..." required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="run-btn">
+              <span class="btn-label">Run agents</span>
+              <span class="btn-arrow">→</span>
+            </button>
+            <button type="button" class="btn btn-ghost" id="clear-btn">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: Timeline -->
+      <div class="pane pane-right">
+        <div class="timeline-header">
+          <h3 class="serif">Pipeline</h3>
+          <span class="timeline-status" id="timeline-status">Waiting</span>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <div class="timeline-empty">
+            <span class="empty-mark">—</span>
+            <p>Run an email to see the pipeline light up, one agent at a time.</p>
+          </div>
+        </div>
+
+        <!-- Final summary -->
+        <div class="run-summary" id="run-summary" hidden>
+          <h3 class="serif">Summary</h3>
+          <div class="summary-grid" id="summary-grid"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- TAB 2: Pending approvals                                         -->
+  <!-- ============================================================== -->
+  <section class="tab-panel" data-panel="pending">
+    <div class="section-header">
+      <h2 class="serif">Pending human review.</h2>
+      <p class="lede">Actions flagged as low-confidence, sensitive, or always-require-approval wait here.</p>
+      <button class="btn btn-ghost btn-sm" id="refresh-pending">↻ Refresh</button>
+    </div>
+
+    <div class="pending-list" id="pending-list">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- TAB 3: Run history                                               -->
+  <!-- ============================================================== -->
+  <section class="tab-panel" data-panel="history">
+    <div class="section-header">
+      <h2 class="serif">Run history.</h2>
+      <input type="search" id="history-search" placeholder="Search sender or subject…" class="search-input">
+    </div>
+    <div class="history-table-wrap">
+      <table class="history-table" id="history-table">
+        <thead>
+          <tr>
+            <th>Processed</th>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Intents</th>
+            <th>Actions</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="history-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- Modal for run detail -->
+<div class="modal" id="detail-modal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-body">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
